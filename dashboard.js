@@ -1,13 +1,13 @@
 // Event listeners for sidebar links
-document.getElementById("profile-link").addEventListener("click", function() {
+document.getElementById("profile-link").addEventListener("click", () => {
     showContent("profile-content");
 });
 
-document.getElementById("projects-link").addEventListener("click", function() {
+document.getElementById("projects-link").addEventListener("click", () => {
     showContent("projects-content");
 });
 
-document.getElementById("contact-link").addEventListener("click", function() {
+document.getElementById("contact-link").addEventListener("click", () => {
     showContent("contact-content");
 });
 
@@ -21,5 +21,19 @@ function showContent(sectionId) {
 
     // Show the clicked section
     const activeSection = document.getElementById(sectionId);
-    activeSection.classList.add("active");
+    if (activeSection) {
+        activeSection.classList.add("active");
+    } else {
+        console.error(`Section with ID "${sectionId}" not found.`);
+    }
+}
+
+// Function to toggle sidebar visibility
+function toggleSidebar() {
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+        sidebar.classList.toggle("open");
+    } else {
+        console.error("Sidebar element not found.");
+    }
 }

@@ -13,6 +13,7 @@ body {
     align-items: center;
     height: 100vh;
     color: #333;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Dashboard Container */
@@ -32,9 +33,14 @@ body {
     height: 100%;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -250px; /* Default hidden position for small screens */
     box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0; /* Sidebar slides into view */
 }
 
 .sidebar .profile {
@@ -95,7 +101,7 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 4px;
-    transition: color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar .nav-links ul li a:hover {
@@ -172,7 +178,6 @@ h2:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
-    transition: grid-template-columns 0.3s ease;
 }
 
 .card {
@@ -180,8 +185,8 @@ h2:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .card:hover {
@@ -190,6 +195,7 @@ h2:hover {
     background: linear-gradient(to right, #f39c12, #15ae24);
 }
 
+/* Dropdown */
 .dropdown-btn {
     background-color: #e74c3c;
     color: white;
@@ -231,10 +237,6 @@ h2:hover {
     background-color: #2ecc71;
 }
 
-.card:hover .dropdown-content {
-    display: block;
-}
-
 /* Animations for sections */
 @keyframes fadeIn {
     0% {
@@ -250,108 +252,68 @@ h2:hover {
 }
 
 /* Media Queries */
-@media screen and (max-width: 1024px) {
-    .sidebar {
-        width: 220px;
-    }
-
-    .main-content {
-        margin-left: 220px;
-    }
-
-    .container {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-
-    .sidebar .profile img {
-        width: 120px;
-        height: 120px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
-
-    .sidebar .nav-links ul li a {
-        font-size: 16px;
-    }
-
-    .sidebar .social-links a {
-        font-size: 22px;
-    }
-
-    /* Adjust the contact details */
-    .sidebar .contact-details {
-        font-size: 12px;
-    }
-}
-
 @media screen and (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
     .sidebar {
-        width: 200px;
+        width: 100%;
+        height: auto;
+        position: static;
+        display: none;
+    }
+
+    .sidebar.open {
+        display: block;
     }
 
     .main-content {
-        margin-left: 200px;
+        margin-left: 0;
+        padding: 20px;
     }
 
     .container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
-
-    .sidebar .profile img {
-        width: 110px;
-        height: 110px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
-
-    .sidebar .nav-links ul li a {
-        font-size: 16px;
-    }
-
-    .sidebar .social-links a {
-        font-size: 20px;
-    }
-
-    /* Adjust the contact details */
-    .sidebar .contact-details {
-        font-size: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 }
 
 @media screen and (max-width: 480px) {
     .sidebar {
-        padding: 10px;
-        width: 100%;
-        position: static;
+        width: 75%;
+        position: fixed;
+        display: none;
+    }
+
+    .sidebar.open {
+        display: block;
     }
 
     .main-content {
         margin-left: 0;
     }
 
-    .profile-img {
-        width: 80px;
-        height: 80px;
+    .container {
+        grid-template-columns: 1fr;
     }
+}
 
-    .sidebar .profile h2 {
-        font-size: 18px;
-    }
+/* Hamburger Menu Button */
+.hamburger {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
 
-    .sidebar .nav-links ul li a {
-        font-size: 14px;
-    }
-
-    .sidebar .social-links a {
-        font-size: 18px;
-    }
-
-    /* Adjust the contact details */
-    .sidebar .contact-details {
-        font-size: 12px;
-    }
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #c10606;
+    border-radius: 2px;
+    transition: all 0.3s;
 }
