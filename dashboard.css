@@ -168,25 +168,31 @@ h2:hover {
     color: #e74c3c;
 }
 
+/* Container for Cards */
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    transition: grid-template-columns 0.3s ease;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 3fr)); /* Adjusted column width */
+    gap: 2px; /* Reduced gap between cards */
+    margin-top: 30px;
+    width: 100%;
 }
 
+/* Card Styles */
 .card {
     background: linear-gradient(to right, #3f31be, #15ae24);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     color: white;
+    width: 100%;
+    max-width: 220px; /* Adjusted width */
+    margin: 5px; /* Reduced margin between cards */
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);  /* Slightly reduced hover effect */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);  /* Slightly reduced hover shadow */
     background: linear-gradient(to right, #f39c12, #15ae24);
 }
 
@@ -194,8 +200,8 @@ h2:hover {
     background-color: #e74c3c;
     color: white;
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 10px 15px;  /* Reduced padding */
+    font-size: 14px;  /* Reduced font size */
     cursor: pointer;
     border-radius: 5px;
     width: 100%;
@@ -213,16 +219,16 @@ h2:hover {
     border-radius: 5px;
     margin-top: 10px;
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-content a {
     color: white;
-    padding: 10px;
+    padding: 8px;
     text-decoration: none;
     display: block;
-    font-size: 16px;
+    font-size: 14px;  /* Reduced font size */
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
@@ -260,7 +266,7 @@ h2:hover {
     }
 
     .container {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 
     .sidebar .profile img {
